@@ -1,0 +1,74 @@
+<!-- graph.html -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Graphanalyse</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <!-- <link rel="stylesheet" href="style.css"> --> <!-- Link zu style.css entfernt -->
+  <link rel="stylesheet" href="graph_style.css"> <!-- Nur graph_style.css wird geladen -->
+</head>
+
+<body class="bg-gray-900 text-white"> <!-- Standard ist Dark Mode -->
+
+  <!-- Navbar -->
+  <nav id="navbar" class="bg-gray-800 p-4 shadow-md">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="index.html" class="text-xl font-bold">🗓️ Aufgabenplaner</a>
+      <div class="flex items-center space-x-4">
+        <ul class="flex space-x-4">
+          <li><a href="index.html" class="hover:text-green-400">Home</a></li>
+          <li><a href="graph.html" class="text-green-400 font-semibold">Graphentheorie</a></li>
+          <!-- Die graph-spezifischen Nav-Links wurden entfernt -->
+        </ul>
+        <button id="themeToggleBtn" class="bg-gray-700 hover:bg-gray-600 px-3 py-1 rounded text-sm">
+          ☀️ Light
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hauptinhalt - Eine große Kachel für das Graph-Tool -->
+  <div class="main-content-container container mx-auto p-4"> <!-- main-content-container statt main-content-grid für eine einzelne Hauptkachel -->
+    <section class="tile bg-gray-800 p-6 rounded-lg shadow-lg"> <!-- Die Kachel selbst -->
+      
+      <!-- Der Inhalt der Graph-Seite (vorher Tabs, jetzt direkt in der Kachel) -->
+      <div> <!-- Kein data-tab oder ID mehr nötig, da keine Tabs mehr geschaltet werden -->
+        <h1 class="text-2xl font-bold mb-6 text-center">Graphanalyse</h1>
+      
+        <div class="grid md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <label for="matrixInput" class="block mb-2 text-sm font-medium">Adjazenzmatrix (Zeilenweise, Zahlen durch Leerzeichen/Komma getrennt):</label>
+            <textarea id="matrixInput" rows="6" class="w-full p-2.5 rounded-md bg-gray-700 border border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 tile-input" placeholder="0 1 0
+1 0 1
+0 1 0"></textarea>
+          </div>
+          <div>
+            <label for="csvUpload" class="block mb-2 text-sm font-medium">Oder lade eine CSV-Datei hoch (Komma-getrennt):</label>
+            <input type="file" id="csvUpload" accept=".csv" class="w-full text-sm rounded-lg border cursor-pointer bg-gray-700 border-gray-600 placeholder-gray-400 text-gray-400 focus:outline-none tile-input file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-600 file:text-white hover:file:bg-blue-700">
+          </div>
+        </div>
+        
+        <div class="flex flex-col sm:flex-row items-stretch gap-4 mb-6">
+          <div class="w-full sm:w-1/3">
+            <label for="powerInput" class="block mb-2 text-sm font-medium">Potenz k:</label>
+            <input type="number" id="powerInput" value="2" class="w-full p-2.5 rounded-md bg-gray-700 border border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 tile-input h-full">
+          </div>
+          <div class="w-full sm:w-2/3 flex">
+            <button id="calculateBtn" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2.5 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-green-400 self-end h-full">
+              Berechnen
+            </button>
+          </div>
+        </div>
+        
+        <div>
+          <label class="block mb-2 text-sm font-medium">Ausgabe:</label>
+          <pre id="output" class="bg-gray-700 p-4 rounded-md overflow-x-auto text-sm graph-output-pre min-h-[150px]"></pre> <!-- min-h-[] für Tailwind min-height -->
+        </div>
+      </div>
+      <!-- Die anderen Tab-Inhalte (tab1-tab, tab2-tab, tab3-tab) wurden entfernt, da keine Tabs mehr -->
+    </section>
+  </div>
+
+  <script src="graph_script.js"></script>
+</body>
+</html>

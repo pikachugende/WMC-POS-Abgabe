@@ -1,0 +1,132 @@
+/* graph_style.css - Alle Stile für die Graph-Seite */
+
+/* === VON STYLE.CSS ÜBERNOMMENE BASIS-STILE (für graph.html nötig) === */
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  min-height: 100vh;
+  padding-top: 68px; /* Höhe der Navbar */
+  transition: background-color 0.3s ease, color 0.3s ease;
+  /* Die Klasse bg-gray-900 und text-white für den Dark Mode kommen aus dem HTML */
+}
+
+/* Light Mode Stile (Basis) */
+body.light-mode {
+  background-color: #f3f4f6; /* Tailwind gray-100 */
+  color: #1f2937; /* Tailwind gray-800 */
+}
+
+/* Navbar Stile */
+#navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  border-bottom: 1px solid #374151; /* Tailwind gray-700 für Dark Mode */
+  transition: background-color 0.3s ease, border-bottom-color 0.3s ease;
+  /* bg-gray-800 für Dark Mode kommt aus dem HTML */
+}
+body.light-mode #navbar {
+  background-color: #e5e7eb; /* Tailwind gray-200 */
+  border-bottom-color: #d1d5db; /* Tailwind gray-300 */
+  color: #1f2937; /* Tailwind gray-800 */
+}
+body.light-mode #navbar a {
+  color: #374151; /* Tailwind gray-700 */
+}
+body.light-mode #navbar a:hover,
+body.light-mode #navbar a.font-semibold { /* Aktiver Link */
+  color: #1d4ed8; /* Tailwind blue-700 */
+}
+
+/* Theme Toggle Button Stile */
+/* bg-gray-700 für Dark Mode kommt aus dem HTML für #themeToggleBtn */
+body.light-mode #themeToggleBtn {
+  background-color: #4b5563; /* Tailwind gray-600 */
+  color: white;
+}
+body.light-mode #themeToggleBtn:hover {
+  background-color: #374151; /* Tailwind gray-700 */
+}
+
+/* Kachel Stile (Basis) */
+/* bg-gray-800 für Dark Mode kommt aus dem HTML für .tile */
+.tile {
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+}
+body.light-mode .tile {
+  background-color: #ffffff; /* Weiß */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+  color: #1f2937; /* Dunkler Text */
+}
+body.light-mode .tile h1, /* Für Graph-Seite Titel */
+body.light-mode .tile h2 { /* Falls doch mal h2 genutzt wird */
+  color: #111827; /* Tailwind gray-900 */
+}
+body.light-mode .tile p,
+body.light-mode .tile label { /* Labels für Formulare */
+  color: #374151; /* Tailwind gray-700 */
+}
+
+/* Input-Felder, Textareas, Selects Stile (Basis) */
+/* bg-gray-700, border-gray-600 etc. für Dark Mode kommen aus dem HTML für .tile-input */
+body.light-mode .tile-input {
+  background-color: #f9fafb; /* Tailwind gray-50 */
+  color: #111827; /* Tailwind gray-900 */
+  border: 1px solid #d1d5db; /* Tailwind gray-300 */
+}
+body.light-mode .tile-input::placeholder {
+  color: #9ca3af; /* Tailwind gray-400 */
+}
+body.light-mode .tile-input:focus {
+  border-color: #2563eb; /* Tailwind blue-600 */
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+/* === ENDE DER VON STYLE.CSS ÜBERNOMMENEN BASIS-STILE === */
+
+
+/* === SPEZIFISCHE STILE FÜR GRAPH.HTML (waren schon hier) === */
+
+/* Light Mode Anpassungen für Elemente der Graph-Seite */
+body.light-mode .graph-output-pre {
+    background-color: #e5e7eb; /* Tailwind gray-200 */
+    color: #1f2937; /* Tailwind gray-800 */
+    border: 1px solid #d1d5db; /* Tailwind gray-300 */
+}
+
+/* Anpassung für den File-Input Button im Light Mode, falls die Tailwind-Klassen nicht ausreichen */
+/* Tailwind-Klassen im HTML für den file-button (file:...) sind schon recht gut,
+   aber falls man es anpassen muss: */
+body.light-mode input[type="file"].tile-input::file-selector-button {
+    /* Die Tailwind 'file:' Klassen haben hohe Spezifität.
+       Wenn diese Regel greifen soll, muss sie ggf. spezifischer sein oder !important nutzen (nicht empfohlen).
+       Besser ist es, die file: Tailwind-Klassen im HTML anzupassen.
+       Beispiel, WENN es nötig wäre:
+       background-color: #2563eb; // Tailwind blue-600
+       color: white;
+    */
+}
+/* body.light-mode input[type="file"].tile-input:hover::file-selector-button {
+    background-color: #1d4ed8; // Tailwind blue-700
+} */
+
+/* Dark Mode (Standard) spezifische Stile für Graph-Seite, falls nötig */
+/* Die Tailwind-Klassen im HTML (z.B. bg-gray-700 für .graph-output-pre) sollten hierfür meist ausreichen. */
+.graph-output-pre {
+    /* Beispiel: font-family: 'Courier New', Courier, monospace; wenn gewünscht */
+}
+
+/* Allgemeine Stile für die Graph-Seite */
+#powerInput, #calculateBtn {
+    /* Höhe wird jetzt durch p-2.5 und h-full in Tailwind gesteuert */
+}
+
+#output {
+    font-family: 'Menlo', 'Monaco', 'Consolas', "Courier New", monospace;
+    white-space: pre;
+    line-height: 1.4;
+    /* min-h-[150px] ist als Tailwind-Klasse im HTML */
+}
