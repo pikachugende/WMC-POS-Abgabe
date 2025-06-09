@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wöchentlicher Aufgabenplaner</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-900 text-white">
+
+
+  <nav id="navbar" class="bg-gray-800 p-4 shadow-md">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="index.html" class="text-xl font-bold">🗓️ Aufgabenplaner</a>
+      <div class="flex items-center space-x-4">
+        <ul class="flex space-x-4">
+          <li><a href="index.html" class="hover:text-green-400">Home</a></li>
+          <li><a href="GraphenTheorie/graph.html" class="hover:text-green-400">Graphentheorie</a></li>
+
+
+        </ul>
+        <button id="themeToggleBtn" class="bg-gray-700 hover:bg-gray-600 px-3 py-1 rounded text-sm">
+          ☀️ Light
+        </button>
+      </div>
+    </div>
+  </nav>
+
+
+  <div class="main-content-grid container mx-auto p-4">
+
+
+    
+
+    <section id="create-task-tile" class="tile bg-gray-800 p-4 rounded-lg shadow-lg">
+      <h2 class="text-xl font-semibold mb-3">Neue Aufgabe</h2>
+      <form id="taskForm" class="space-y-3">
+        <input type="text" id="title" placeholder="Titel" class="w-full p-2 rounded text-black tile-input" required>
+        <input type="date" id="due" class="w-full p-2 rounded text-black tile-input" required>
+        <select id="priority" class="w-full p-2 rounded text-black tile-input">
+          <option value="hoch">Hoch</option>
+          <option value="mittel">Mittel</option>
+          <option value="niedrig">Niedrig</option>
+        </select>
+        <button type="submit" class="bg-green-500 hover:bg-green-600 px-4 py-2 rounded w-full">Hinzufügen</button>
+      </form>
+    </section>
+
+
+
+    <section id="task-list-tile" class="tile bg-gray-800 p-4 rounded-lg shadow-lg">
+      <h2 class="text-xl font-semibold mb-3">Deine Aufgaben</h2>
+      <ul id="taskList" class="space-y-2 max-h-96 overflow-y-auto">
+
+
+      </ul>
+    </section>
+
+
+
+    <section id="calendar-tile" class="tile bg-gray-800 p-4 rounded-lg shadow-lg">
+      <h2 class="text-xl font-semibold mb-3">Kalender</h2>
+      <div class="calendar-header flex justify-between items-center mb-3">
+        <button id="prevMonth" class="bg-blue-500 hover:bg-blue-600 px-3 py-1 rounded"><</button>
+        <h3 id="monthYear" class="text-lg font-medium"></h3>
+        <button id="nextMonth" class="bg-blue-500 hover:bg-blue-600 px-3 py-1 rounded">></button>
+      </div>
+      <div id="calendarGrid" class="grid grid-cols-7 gap-1 text-center">
+
+      </div>
+    </section>
+
+  <!--Zitat -->
+    <section id="quote-tile" class="tile bg-gray-800 p-4 rounded-lg shadow-lg">
+      <h2 class="text-xl font-semibold">💬 Zitat des Tages</h2>
+      <p id="quote" class="italic mt-2 text-gray-300">Wird geladen...</p>
+    </section>
+
+<!--Wetter -->
+    <section id="weather-tile" class="tile bg-gray-800 p-4 rounded-lg shadow-lg">
+      <h2 class="text-xl font-semibold">☀️ Wetter</h2>
+      <p id="weather" class="mt-2 text-gray-300">Wird geladen...</p>
+    </section>
+
+  <!--Timer -->
+    <section id="timer-tile" class="tile bg-gray-800 p-4 rounded-lg shadow-lg">
+      <h2 class="text-xl font-semibold mb-3">🧘 Fokus-Timer</h2>
+      <div class="space-y-3">
+        <select id="timerSelect" class="w-full p-2 rounded text-black tile-input">
+          <option value="5">5 Minuten</option>
+          <option value="10">10 Minuten</option>
+          <option value="25">25 Minuten (Pomodoro)</option>
+          <option value="45">45 Minuten</option>
+        </select>
+        <div id="countdown" class="text-3xl font-mono text-center py-2">00:00</div>
+        <div class="flex space-x-2">
+          <button id="startTimerBtn" class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded flex-1">Start</button>
+          <button id="resetTimerBtn" class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded flex-1">Reset</button>
+        </div>
+        <audio id="player" controls loop class="w-full mt-2">
+          <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+          Dein Browser unterstützt das Audio-Element nicht.
+        </audio>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

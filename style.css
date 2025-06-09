@@ -1,0 +1,230 @@
+/* Bestehendes CSS bleibt hier */
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  min-height: 100vh;
+  padding-top: 68px; /* Höhe der Navbar, um Überlappung zu vermeiden */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Für sanften Übergang */
+}
+
+/* Dark Mode (Standard durch Tailwind-Klassen auf body) */
+/* bg-gray-900 text-white */
+
+/* Light Mode Stile */
+body.light-mode {
+  background-color: #f0f0f0; /* Helles Grau */
+  color: #1a202c; /* Dunkler Text (Tailwind gray-900) */
+}
+
+body.light-mode #navbar {
+  background-color: #e2e8f0; /* Tailwind gray-200 */
+  border-bottom-color: #cbd5e0; /* Tailwind gray-400 */
+  color: #1a202c;
+}
+body.light-mode #navbar a {
+  color: #2d3748; /* Tailwind gray-800 */
+}
+body.light-mode #navbar a:hover {
+  color: #2b6cb0; /* Tailwind blue-700 */
+}
+body.light-mode #themeToggleBtn {
+  background-color: #4a5568; /* Tailwind gray-700 */
+  color: white;
+}
+body.light-mode #themeToggleBtn:hover {
+  background-color: #2d3748; /* Tailwind gray-800 */
+}
+
+
+body.light-mode .tile {
+  background-color: #ffffff; /* Weiß */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Tailwind shadow-lg in hell */
+  color: #1a202c; /* Dunkler Text */
+}
+body.light-mode .tile h2 {
+  color: #1a202c;
+}
+body.light-mode .tile p, 
+body.light-mode .tile #countdown,
+body.light-mode .tile #monthYear {
+  color: #4a5568; /* Tailwind gray-700 */
+}
+body.light-mode .tile #quote,
+body.light-mode .tile #weather {
+  color: #718096; /* Tailwind gray-600 */
+}
+
+/* Anpassung für Input-Felder im Light Mode */
+body.light-mode .tile-input {
+  background-color: #edf2f7; /* Tailwind gray-200 */
+  color: #1a202c; /* Dunkler Text */
+  border: 1px solid #cbd5e0; /* Tailwind gray-400 */
+}
+body.light-mode .tile-input::placeholder {
+  color: #a0aec0; /* Tailwind gray-500 */
+}
+
+
+body.light-mode #taskList li {
+  background-color: #e2e8f0; /* Tailwind gray-200 */
+  color: #2d3748; /* Tailwind gray-800 */
+}
+body.light-mode #taskList li .text-gray-400 { /* Fälligkeitsdatum */
+    color: #718096 !important; /* Tailwind gray-600 */
+}
+
+
+body.light-mode #calendarGrid div {
+  border-color: #cbd5e0; /* Tailwind gray-400 */
+}
+body.light-mode #calendarGrid .day-name {
+  background-color: #edf2f7; /* Tailwind gray-200 */
+  font-weight: bold;
+}
+body.light-mode #calendarGrid .current-day {
+  background-color: #48bb78; /* Tailwind green-500 */
+  color: white;
+}
+body.light-mode #calendarGrid .task-day {
+  background-color: #63b3ed; /* Tailwind blue-400 */
+  color: white;
+}
+body.light-mode #calendarGrid .empty-day {
+  background-color: transparent;
+  border: none;
+}
+
+/* Scrollbar Anpassung für Light Mode */
+body.light-mode #taskList {
+  scrollbar-color: #a0aec0 #e2e8f0; /* thumb track (gray-500, gray-200) */
+}
+body.light-mode #taskList::-webkit-scrollbar-track {
+  background: #e2e8f0; /* Tailwind gray-200 */
+}
+body.light-mode #taskList::-webkit-scrollbar-thumb {
+  background-color: #a0aec0; /* Tailwind gray-500 */
+  border-color: #e2e8f0; /* Tailwind gray-200 */
+}
+
+#navbar {
+  position: fixed; /* Bleibt beim Scrollen sichtbar */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Stellt sicher, dass die Navbar über anderen Elementen liegt */
+  border-bottom: 1px solid #4a5568; /* Tailwind gray-700 */
+  transition: background-color 0.3s ease, border-bottom-color 0.3s ease;
+}
+
+/* Kachel-Layout (Grid) */
+.main-content-grid {
+  display: grid;
+  gap: 1rem; /* Abstand zwischen den Kacheln */
+}
+
+/* Responsive Grid-Layout */
+/* Standard: 1 Spalte für kleine Bildschirme */
+.main-content-grid {
+  grid-template-columns: 1fr;
+}
+
+/* Ab mittleren Bildschirmen (md breakpoint in Tailwind: 768px) */
+@media (min-width: 768px) {
+  .main-content-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 Spalten */
+  }
+  /* Spezifische Kacheln können über mehrere Spalten gehen */
+  #task-list-tile {
+     grid-column: span 2 / span 2; /* Aufgabenliste über die volle Breite */
+  }
+}
+
+/* Ab großen Bildschirmen (lg breakpoint in Tailwind: 1024px) */
+@media (min-width: 1024px) {
+  .main-content-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 Spalten */
+  }
+  #task-list-tile {
+    grid-column: span 1 / span 1; /* Aufgabenliste wieder normal */
+  }
+  #calendar-tile {
+    grid-column: span 2 / span 2; /* Kalender nimmt 2 Spalten ein */
+  }
+}
+
+/* Ab sehr großen Bildschirmen (xl breakpoint in Tailwind: 1280px) */
+@media (min-width: 1280px) {
+  .main-content-grid {
+    grid-template-columns: repeat(4, 1fr); /* 4 Spalten */
+  }
+   #calendar-tile {
+    grid-column: span 2 / span 2; /* Kalender bleibt bei 2 Spalten */
+  }
+  #task-list-tile {
+    grid-column: span 2 / span 2; /* Aufgabenliste auch 2 Spalten */
+  }
+}
+
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  /* min-height: 200px; Optional: falls Kacheln eine Mindesthöhe haben sollen */
+}
+
+/* Kalender Styling */
+#calendarGrid div {
+  padding: 0.5rem;
+  border: 1px solid #4a5568; /* Tailwind gray-700 */
+  border-radius: 0.25rem;
+  min-height: 40px; /* Mindesthöhe für Tage */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+#calendarGrid .day-name {
+  font-weight: bold;
+  background-color: #2d3748; /* Tailwind gray-800, etwas dunkler */
+}
+
+#calendarGrid .empty-day {
+  background-color: transparent;
+  border: none;
+}
+
+#calendarGrid .current-day {
+  background-color: #38a169; /* Tailwind green-600 */
+  color: white;
+  font-weight: bold;
+}
+
+#calendarGrid .task-day {
+    background-color: #4299e1; /* Tailwind blue-500 */
+    /* border: 2px solid #2b6cb0; Tailwind blue-700 */
+    color: white;
+}
+
+
+#countdown {
+  font-variant-numeric: tabular-nums; /* Stellt sicher, dass Zahlen die gleiche Breite haben */
+}
+
+/* Scrollbar für Aufgabenliste, falls sie zu lang wird */
+#taskList {
+  scrollbar-width: thin;
+  scrollbar-color: #4a5568 #2d3748; /* thumb track */
+}
+#taskList::-webkit-scrollbar {
+  width: 8px;
+}
+#taskList::-webkit-scrollbar-track {
+  background: #2d3748; /* Tailwind gray-800 */
+}
+#taskList::-webkit-scrollbar-thumb {
+  background-color: #4a5568; /* Tailwind gray-700 */
+  border-radius: 4px;
+  border: 2px solid #2d3748; /* Tailwind gray-800 */
+}
